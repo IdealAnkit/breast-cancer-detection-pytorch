@@ -1,0 +1,181 @@
+✅ FULL WORKFLOW EXPLANATION
+
+The notebook implements a Binary Classification Model (Logistic Regression using PyTorch from scratch).
+
+The complete pipeline is:
+
+1️⃣ Import Libraries
+2️⃣ Load Dataset
+3️⃣ Data Cleaning
+4️⃣ Train-Test Split
+5️⃣ Feature Scaling
+6️⃣ Label Encoding
+7️⃣ Convert to PyTorch Tensors
+8️⃣ Define Neural Network Model
+9️⃣ Define Loss Function (Binary Cross Entropy)
+🔟 Training Loop (Forward → Loss → Backward → Update)
+1️⃣1️⃣ Evaluation (Accuracy Calculation)
+
+🔎 Step-by-Step Explanation with Clean Correct Code
+
+Below is the corrected and fully commented version of the code (the PDF contains small typos like signoid, float6d, etc., which I fixed).
+
+🧠 COMPLETE TRAINING PIPELINE (Clean Version)
+# ==============================
+# 1️⃣ Import Required Libraries
+# ==============================
+
+import numpy as np
+import pandas as pd
+import torch
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
+
+# ==============================
+# 2️⃣ Load Dataset
+# ==============================
+
+url = "https://raw.githubusercontent.com/gscdit/Breast-Cancer-Detection/refs/heads/master/data.csv"
+df = pd.read_csv(url)
+
+print("Dataset Shape:", df.shape)   # (569, 33)
+df.head()
+
+# ==============================
+# 3️⃣ Data Cleaning
+# ==============================
+
+# Remove unnecessary columns
+df.drop(columns=['id', 'Unnamed: 32'], inplace=True)
+
+print("Shape after dropping columns:", df.shape)
+
+# ==============================
+# 4️⃣ Train-Test Split
+# ==============================
+
+X = df.iloc[:, 1:]      # All features
+y = df.iloc[:, 0]       # diagnosis column
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    random_state=42
+)
+
+# ==============================
+# 5️⃣ Feature Scaling
+# ==============================
+
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# ==============================
+# 6️⃣ Label Encoding
+# ==============================
+
+encoder = LabelEncoder()
+
+y_train = encoder.fit_transform(y_train)
+y_test = encoder.transform(y_test)
+
+print("Encoded Labels Example:", y_train[:5])
+
+
+Here:
+
+M → 1
+
+B → 0
+
+# ==============================
+# 7️⃣ Convert to PyTorch Tensors
+# ==============================
+
+X_train_tensor = torch.from_numpy(X_train).float()
+X_test_tensor  = torch.from_numpy(X_test).float()
+
+y_train_tensor = torch.from_numpy(y_train).float().view(-1, 1)
+y_test_tensor  = torch.from_numpy(y_test).float().view(-1, 1)
+
+print(X_train_tensor.shape)  # torch.Size([455, 30])
+print(y_train_tensor.shape)  # torch.Size([455, 1])
+
+🧠 8️⃣ Define Model (Logistic Regression from Scratch)
+class MySimpleNN:
+
+    def __init__(self, X):
+        # Initialize weights randomly
+        self.weights = torch.randn(X.shape[1], 1, requires_grad=True)
+        
+        # Initialize bias
+        self.bias = torch.zeros(1, requires_grad=True)
+
+    def forward(self, X):
+        # Linear transformation
+        z = torch.matmul(X, self.weights) + self.bias
+        
+        # Sigmoid activation (Binary Classification)
+        y_pred = torch.sigmoid(z)
+        
+        return y_pred
+
+    def loss_function(self, y_pred, y_true):
+        """
+        Binary Cross Entropy Loss (Manual implementation)
+        """
+        epsilon = 1e-7
+        y_pred = torch.clamp(y_pred, epsilon, 1 - epsilon)
+
+        loss = -(
+            y_true * torch.log(y_pred) +
+            (1 - y_true) * torch.log(1 - y_pred)
+        ).mean()
+
+        return loss
+
+⚙️ 9️⃣ Important Hyperparameters
+learning_rate = 0.1
+epochs = 25
+
+🔁 🔟 Training Loop
+# Create model
+model = MySimpleNN(X_train_tensor)
+
+for epoch in range(epochs):
+
+    # Forward pass
+    y_pred = model.forward(X_train_tensor)
+
+    # Calculate loss
+    loss = model.loss_function(y_pred, y_train_tensor)
+
+    # Backpropagation
+    loss.backward()
+
+    # Update parameters
+    with torch.no_grad():
+        model.weights -= learning_rate * model.weights.grad
+        model.bias    -= learning_rate * model.bias.grad
+
+        # Reset gradients
+        model.weights.grad.zero_()
+        model.bias.grad.zero_()
+
+    print(f"Epoch [{epoch+1}/{epochs}] Loss: {loss.item():.4f}")
+
+🧪 1️⃣1️⃣ Model Evaluation
+with torch.no_grad():
+
+    y_pred = model.forward(X_test_tensor)
+
+    # Convert probabilities to 0/1
+    y_pred = (y_pred > 0.5).float()
+
+    accuracy = (y_pred == y_test_tensor).float().mean()
+
+    print("Accuracy:", accuracy.item())
