@@ -343,7 +343,7 @@ We define a custom neural network model called `MySimpleNN` that implements Logi
 ```mermaid
 graph TD;
     Input[📥 Input Features<br/>30 numerical features] -->|Matrix Multiplication| Linear[⚙️ Linear Transformation<br/>z = Xw + b];
-    Linear -->|Activation Function| Activation[🔄 Sigmoid Function<br/>σ(z) = 1/(1+e^-z)];
+    Linear -->|Activation Function| Activation[🔄 Sigmoid Function<br/>σ(z) = 1/(1+e^(-z))];
     Activation -->|Probability| Prob[📊 Probability Output<br/>Range: 0 to 1];
     Prob -->|Decision Boundary| Output[🎯 Binary Classification<br/>Threshold: 0.5<br/>Class: 0 or 1];
 
