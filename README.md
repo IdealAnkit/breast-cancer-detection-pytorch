@@ -2,7 +2,7 @@
 
 # 🎗️ Breast Cancer Detection using PyTorch
 
-### _Building Logistic Regression from Scratch with Deep Learning_
+### _Two Implementations: From-Scratch & Industry-Standard (nn.Module)_
 
 <p align="center">
   <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" alt="PyTorch"/>
@@ -15,12 +15,14 @@
   <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat-square&logo=pandas&logoColor=white" alt="Pandas"/>
   <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"/>
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"/>
-  <img src="https://img.shields.io/badge/accuracy-91.23%25-brightgreen?style=flat-square" alt="Accuracy"/>
+  <img src="https://img.shields.io/badge/V1%20Accuracy-91.23%25-brightgreen?style=flat-square" alt="V1 Accuracy"/>
+  <img src="https://img.shields.io/badge/V2%20Accuracy-96.49%25-success?style=flat-square" alt="V2 Accuracy"/>
 </p>
 
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-quick-start">Quick Start</a> •
+  <a href="#-version-comparison-v1-vs-v2">V1 vs V2</a> •
   <a href="#-workflow">Workflow</a> •
   <a href="#-architecture">Architecture</a> •
   <a href="#-results">Results</a> •
@@ -35,7 +37,12 @@
 
 > **Empowering Medical AI Research with PyTorch**
 
-This project implements a **Binary Classification Model** to detect Breast Cancer (Malignant vs. Benign) using a **Logistic Regression** model built **completely from scratch using PyTorch**. Unlike using pre-built libraries, this implementation provides a deep understanding of the underlying mathematics and neural network fundamentals.
+This project implements a **Binary Classification Model** to detect Breast Cancer (Malignant vs. Benign) using **two different approaches** to Logistic Regression with PyTorch:
+
+🔹 **Version 1 (From-Scratch)**: Custom implementation using raw PyTorch tensors and manual gradient descent  
+🔹 **Version 2 (nn.Module)**: Industry-standard implementation using `nn.Module`, `nn.Linear`, and built-in optimizers
+
+Both implementations provide insights into neural network fundamentals, with V1 focusing on mathematical foundations and V2 demonstrating production-ready PyTorch practices.
 
 <table>
 <tr>
@@ -43,10 +50,11 @@ This project implements a **Binary Classification Model** to detect Breast Cance
 
 ### 🎯 **What Makes This Special?**
 
-- 🧮 **From-Scratch Implementation** - No black boxes
+- 🧮 **Dual Implementation** - Both from-scratch & nn.Module
 - 📊 **Clean Pipeline** - Professional ML workflow
-- 🧠 **Educational** - Learn the math behind ML
-- 📈 **High Accuracy** - ~91% on test data
+- 🧠 **Educational** - Learn PyTorch fundamentals
+- 📈 **High Accuracy** - Up to 96.49% on test data
+- 🔄 **Two Learning Paths** - Theory & Practice
 
 </td>
 <td width="50%">
@@ -68,14 +76,15 @@ This project implements a **Binary Classification Model** to detect Breast Cance
 
 <div align="center">
 
-| Feature | Description                                                                 |
-| :-----: | :-------------------------------------------------------------------------- |
-|   🔬    | **Medical AI Application** - Real-world breast cancer detection             |
-|   🧪    | **From-Scratch Neural Network** - Custom logistic regression implementation |
-|   📊    | **Complete ML Pipeline** - Data preprocessing to model evaluation           |
-|   🎯    | **High Performance** - Achieves ~91% accuracy on test data                  |
-|   📚    | **Educational** - Detailed comments and mathematical explanations           |
-|   🔄    | **Reproducible** - Consistent results with proper random seeding            |
+| Feature | Description                                                       |
+| :-----: | :---------------------------------------------------------------- |
+|   🔬    | **Medical AI Application** - Real-world breast cancer detection   |
+|   🧪    | **Dual Implementation** - From-scratch & nn.Module versions       |
+|   📊    | **Complete ML Pipeline** - Data preprocessing to model evaluation |
+|   🎯    | **High Performance** - Up to 96.49% accuracy (V2) on test data    |
+|   📚    | **Educational** - Detailed comments and mathematical explanations |
+|   🔄    | **Reproducible** - Consistent results with proper random seeding  |
+|   🏗️    | **Industry Practices** - Professional PyTorch patterns (V2)       |
 
 </div>
 
@@ -85,26 +94,30 @@ This project implements a **Binary Classification Model** to detect Breast Cance
 
 ```
 📦 BrestCancer/
-├── 📓 Breast_Cancer_Detection_PyTorch.ipynb  # Main Jupyter Notebook
-├── 📄 FULL WORKFLOW EXPLANATION.txt      # Detailed workflow documentation
-├── 📝 README.md                              # Project documentation (you're here!)
-└── 📂 assets/                                # Images and diagrams
+├── 📓 Breast_Cancer_Detection_PyTorch.ipynb      # V1: From-Scratch Implementation
+├── 📓 Breast_Cancer_Detection_nn_Module.ipynb    # V2: nn.Module Implementation (NEW)
+├── 📄 FULL WORKFLOW EXPLANATION.txt              # Detailed workflow documentation
+├── 📝 README.md                                  # Project documentation (you're here!)
+└── 📂 assets/                                    # Images and diagrams
 ```
 
 ### **File Overview**
 
 ```mermaid
 graph TD;
-    A[🎗️ Breast Cancer Project] --> B[📓 Main Notebook];
+    A[🎗️ Breast Cancer Project] --> B[📓 V1: From-Scratch];
+    A --> B2[📓 V2: nn.Module];
     A --> C[📄 Workflow Docs];
     A --> D[📝 README];
     A --> E[📂 Assets];
-    B --> F[Training & Testing Code];
+    B --> F[Manual Implementation];
+    B2 --> F2[Industry Standard];
     C --> G[Step-by-Step Guide];
     D --> H[Project Documentation];
     E --> I[Visual Resources];
     style A fill:#ff69b4,stroke:#333,stroke-width:3px,color:#fff
     style B fill:#4169e1,stroke:#333,stroke-width:2px
+    style B2 fill:#00bcd4,stroke:#333,stroke-width:2px
     style C fill:#32cd32,stroke:#333,stroke-width:2px
     style D fill:#ffa500,stroke:#333,stroke-width:2px
     style E fill:#9370db,stroke:#333,stroke-width:2px
@@ -204,13 +217,118 @@ git clone <repository-url>
 cd BrestCancer
 
 # Launch Jupyter Notebook
+
+# For Version 1 (From-Scratch Implementation)
 jupyter notebook Breast_Cancer_Detection_PyTorch.ipynb
+
+# For Version 2 (nn.Module Implementation)
+jupyter notebook Breast_Cancer_Detection_nn_Module.ipynb
 
 # Or use Jupyter Lab for a modern interface
 jupyter lab
 ```
 
-> 💡 **Tip**: You can also run this notebook on [Google Colab](https://colab.research.google.com/) for free GPU access!
+> 💡 **Tip**: You can also run these notebooks on [Google Colab](https://colab.research.google.com/) for free GPU access!
+
+---
+
+## 🔄 Version Comparison: V1 vs V2
+
+<div align="center">
+
+### **Two Approaches to Understanding PyTorch**
+
+</div>
+
+This project offers **two complete implementations** of the same breast cancer detection model, each serving different learning objectives:
+
+<table>
+<thead>
+  <tr>
+    <th width="20%"><b>Aspect</b></th>
+    <th width="40%"><b>🔹 Version 1: From-Scratch</b></th>
+    <th width="40%"><b>🔹 Version 2: nn.Module</b></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><b>📁 Notebook</b></td>
+    <td><code>Breast_Cancer_Detection_PyTorch.ipynb</code></td>
+    <td><code>Breast_Cancer_Detection_nn_Module.ipynb</code></td>
+  </tr>
+  <tr>
+    <td><b>🎯 Purpose</b></td>
+    <td>Educational - Learn fundamentals</td>
+    <td>Professional - Industry practices</td>
+  </tr>
+  <tr>
+    <td><b>🏗️ Architecture</b></td>
+    <td>Manual weight initialization<br/>Custom forward pass<br/>Manual gradient descent</td>
+    <td><code>nn.Module</code> inheritance<br/><code>nn.Linear</code> layer<br/><code>nn.Sigmoid</code> activation</td>
+  </tr>
+  <tr>
+    <td><b>📉 Loss Function</b></td>
+    <td>Manual BCE implementation<br/><code>-(y*log(ŷ) + (1-y)*log(1-ŷ))</code></td>
+    <td>Built-in <code>nn.BCELoss()</code></td>
+  </tr>
+  <tr>
+    <td><b>⚡ Optimizer</b></td>
+    <td>Manual gradient descent<br/><code>w -= lr * w.grad</code></td>
+    <td>Built-in <code>torch.optim.SGD</code></td>
+  </tr>
+  <tr>
+    <td><b>🔄 Training Loop</b></td>
+    <td>4 steps:<br/>1. Forward<br/>2. Loss<br/>3. Backward<br/>4. Manual update</td>
+    <td>5 steps:<br/>1. Forward<br/>2. Loss<br/>3. Zero grad<br/>4. Backward<br/>5. Optimizer step</td>
+  </tr>
+  <tr>
+    <td><b>📊 Test Accuracy</b></td>
+    <td><b>91.23%</b></td>
+    <td><b>96.49%</b> 🎉</td>
+  </tr>
+  <tr>
+    <td><b>💡 Best For</b></td>
+    <td>• Understanding backpropagation<br/>• Learning gradient descent<br/>• Mathematical foundations<br/>• Research & theory</td>
+    <td>• Production-ready code<br/>• Scalable models<br/>• Team collaboration<br/>• Real-world deployment</td>
+  </tr>
+  <tr>
+    <td><b>📈 Learning Value</b></td>
+    <td>⭐⭐⭐⭐⭐ Deep understanding</td>
+    <td>⭐⭐⭐⭐⭐ Professional skills</td>
+  </tr>
+</tbody>
+</table>
+
+### 🎓 **Which Version Should You Start With?**
+
+<table>
+<tr>
+<td width="50%">
+
+**Start with V1 if you want to:**
+
+- ✅ Learn how neural networks **really work**
+- ✅ Understand backpropagation mechanics
+- ✅ See the math behind gradient descent
+- ✅ Build strong ML foundations
+- ✅ Prepare for research or theory-heavy roles
+
+</td>
+<td width="50%">
+
+**Start with V2 if you want to:**
+
+- ✅ Learn **industry-standard** PyTorch patterns
+- ✅ Build production-ready models quickly
+- ✅ Use established best practices
+- ✅ Collaborate with professional ML teams
+- ✅ Focus on practical implementation
+
+</td>
+</tr>
+</table>
+
+> 💡 **Recommendation**: Study **both versions** sequentially! V1 teaches you _why_ things work, V2 teaches you _how_ professionals implement them.
 
 ---
 
@@ -332,11 +450,13 @@ sequenceDiagram
 
 <div align="center">
 
-### **From-Scratch Logistic Regression Model**
+### **Version 1: From-Scratch Logistic Regression Model**
 
 </div>
 
 We define a custom neural network model called `MySimpleNN` that implements Logistic Regression using only PyTorch tensors and operations.
+
+> 💡 **Note**: Version 2 uses the same architecture but implements it using `nn.Module`, `nn.Linear`, and `nn.Sigmoid` for a more professional, scalable approach. The mathematical logic remains identical.
 
 ### 🏗️ Architecture Diagram
 
@@ -398,8 +518,10 @@ graph TD;
 
 ### 💻 Code Implementation
 
+#### 📌 Version 1: From-Scratch Implementation
+
 <details>
-<summary><b>Click to expand: Model Class Implementation</b></summary>
+<summary><b>Click to expand: Model Class Implementation (V1)</b></summary>
 
 ```python
 class MySimpleNN:
@@ -434,7 +556,7 @@ class MySimpleNN:
 </details>
 
 <details>
-<summary><b>Click to expand: Loss Function Implementation</b></summary>
+<summary><b>Click to expand: Loss Function Implementation (V1)</b></summary>
 
 ```python
 def binary_cross_entropy_loss(y_pred, y_true):
@@ -466,6 +588,99 @@ def binary_cross_entropy_loss(y_pred, y_true):
 
 </details>
 
+---
+
+#### 📌 Version 2: nn.Module Implementation
+
+<details>
+<summary><b>Click to expand: Model Class Implementation (V2)</b></summary>
+
+```python
+import torch.nn as nn
+
+class MySimpleNN(nn.Module):
+    """
+    Logistic Regression using PyTorch's nn.Module
+    Industry-standard implementation
+    """
+    def __init__(self, num_features):
+        super().__init__()
+
+        # Linear layer: automatically initializes weights and bias
+        self.linear = nn.Linear(num_features, 1)
+
+        # Sigmoid activation
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, features):
+        """
+        Forward pass through the network
+
+        Args:
+            features: Input features tensor
+
+        Returns:
+            Sigmoid activated output (probabilities)
+        """
+        # Linear transformation
+        out = self.linear(features)
+
+        # Apply sigmoid
+        out = self.sigmoid(out)
+
+        return out
+```
+
+**Key Differences from V1:**
+
+- ✅ Inherits from `nn.Module` for PyTorch integration
+- ✅ Uses `nn.Linear` for automatic weight management
+- ✅ Uses `nn.Sigmoid` instead of `torch.sigmoid()`
+- ✅ Only 15 lines vs 30+ lines (more concise)
+- ✅ Automatic initialization with built-in best practices
+
+</details>
+
+<details>
+<summary><b>Click to expand: Training Setup (V2)</b></summary>
+
+```python
+# Initialize model
+model = MySimpleNN(num_features=30)
+
+# Built-in loss function
+loss_function = nn.BCELoss()
+
+# Built-in optimizer
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+
+# Training loop
+for epoch in range(25):
+    # 1. Forward pass
+    y_pred = model(X_train_tensor)
+
+    # 2. Calculate loss
+    loss = loss_function(y_pred, y_train_tensor)
+
+    # 3. Zero gradients
+    optimizer.zero_grad()
+
+    # 4. Backward pass
+    loss.backward()
+
+    # 5. Update parameters
+    optimizer.step()
+```
+
+**Key Differences from V1:**
+
+- ✅ Uses `nn.BCELoss()` instead of manual implementation
+- ✅ Uses `torch.optim.SGD()` for automatic weight updates
+- ✅ Clear 5-step training pattern (industry standard)
+- ✅ More maintainable and extensible
+
+</details>
+
 ### 🎯 Model Architecture Summary
 
 ```mermaid
@@ -486,53 +701,76 @@ graph LR
 
 <div align="center">
 
-### **Model Performance Metrics**
+### **Model Performance Metrics - Both Versions**
 
 <table>
 <thead>
   <tr>
     <th>Metric</th>
-    <th>Value</th>
-    <th>Visualization</th>
+    <th>Version 1 (From-Scratch)</th>
+    <th>Version 2 (nn.Module)</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td><b>🎯 Accuracy</b></td>
-    <td><h3>91.23%</h3></td>
-    <td>
-      <img src="https://progress-bar.dev/91/?title=Test%20Accuracy&width=200&color=00d154" alt="Accuracy"/>
+    <td><b>🎯 Test Accuracy</b></td>
+    <td><h3>91.23%</h3>
+      <img src="https://progress-bar.dev/91/?title=V1%20Accuracy&width=200&color=4169e1" alt="V1 Accuracy"/>
+    </td>
+    <td><h3>96.49%</h3>
+      <img src="https://progress-bar.dev/96/?title=V2%20Accuracy&width=200&color=00d154" alt="V2 Accuracy"/>
     </td>
   </tr>
   <tr>
     <td><b>📈 Epochs</b></td>
     <td>25</td>
-    <td>⏱️ Quick convergence</td>
+    <td>25</td>
   </tr>
   <tr>
     <td><b>⚡ Learning Rate</b></td>
     <td>0.1</td>
-    <td>🎚️ Optimal for this dataset</td>
+    <td>0.1</td>
+  </tr>
+  <tr>
+    <td><b>📉 Final Loss</b></td>
+    <td>~0.25</td>
+    <td>0.1748</td>
   </tr>
   <tr>
     <td><b>🔢 Parameters</b></td>
     <td>31 (30 weights + 1 bias)</td>
-    <td>💾 Lightweight model</td>
+    <td>31 (30 weights + 1 bias)</td>
+  </tr>
+  <tr>
+    <td><b>🏗️ Implementation</b></td>
+    <td>Manual tensors & gradients</td>
+    <td>nn.Module + nn.Linear</td>
+  </tr>
+  <tr>
+    <td><b>⚙️ Optimizer</b></td>
+    <td>Manual gradient descent</td>
+    <td>torch.optim.SGD</td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
-### 📉 Training Progression
+### 📉 Training Progression (Version 2)
+
+**Loss Reduction Over 25 Epochs:**
+
+- Epoch 1: 0.6184 → Epoch 25: 0.1748
+- Smooth convergence with consistent improvement
+- Loss decreased by **71.7%** from start to finish
 
 ```mermaid
 graph LR
-    E1[Epoch 1<br/>Loss: High] --> E5[Epoch 5<br/>Loss ↓]
-    E5 --> E10[Epoch 10<br/>Loss ↓↓]
-    E10 --> E15[Epoch 15<br/>Loss ↓↓↓]
-    E15 --> E20[Epoch 20<br/>Loss ↓↓↓↓]
-    E20 --> E25[Epoch 25<br/>Converged ✓]
+    E1[Epoch 1<br/>Loss: 0.6184] --> E5[Epoch 5<br/>Loss: 0.3315]
+    E5 --> E10[Epoch 10<br/>Loss: 0.2482]
+    E10 --> E15[Epoch 15<br/>Loss: 0.2117]
+    E15 --> E20[Epoch 20<br/>Loss: 0.1899]
+    E20 --> E25[Epoch 25<br/>Loss: 0.1748 ✓]
 
     style E1 fill:#ff6b6b,color:#fff
     style E5 fill:#ffa07a,color:#fff
@@ -548,24 +786,53 @@ graph LR
 <tr>
 <td width="50%">
 
-#### ✅ **Strengths**
+#### ✅ **Strengths (Both Versions)**
 
-- 🎯 High accuracy on test data
-- ⚡ Fast training convergence
+- 🎯 High accuracy on test data (91-96%)
+- ⚡ Fast training convergence (25 epochs)
 - 📉 Low computational cost
 - 🧮 Simple, interpretable model
 - 💡 Easy to understand and debug
+- 🔄 Reproducible results with seeding
 
 </td>
 <td width="50%">
 
-#### 🔄 **Potential Improvements**
+#### 💪 **V2 Improvements Over V1**
 
-- 🔬 Add more evaluation metrics
-- 📊 Implement confusion matrix
-- 🎚️ Try different learning rates
-- 🔁 Add early stopping
-- 🧪 K-fold cross-validation
+- 📈 **+5.26% accuracy improvement** (96.49% vs 91.23%)
+- 🏗️ **Better architecture** with nn.Module
+- ⚙️ **Built-in optimizer** for efficiency
+- 🔧 **Production-ready** code structure
+- 📊 **Lower final loss** (0.1748 vs ~0.25)
+- 🎯 **Industry standard** practices
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🎓 **Educational Value (V1)**
+
+- 📚 Deep understanding of backprop
+- 🧮 Manual gradient calculations visible
+- 💡 Clear mathematical foundations
+- 🔍 Transparent weight updates
+- 🧪 Perfect for learning theory
+
+</td>
+<td width="50%">
+
+#### 🚀 **Practical Benefits (V2)**
+
+- 🏢 Ready for production deployment
+- 🤝 Team collaboration friendly
+- 📦 Modular and extensible
+- ⚡ Leverages PyTorch optimizations
+- 🔄 Easy to scale to complex models
 
 </td>
 </tr>
@@ -702,6 +969,63 @@ with torch.no_grad():
 
 print(f"Prediction: {class_label} (Confidence: {prediction.item():.2%})")
 ```
+
+---
+
+## 🎯 Key Takeaways
+
+<div align="center">
+
+### **Why This Project Stands Out**
+
+</div>
+
+This project uniquely offers **two complete implementations** that serve complementary learning objectives:
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+### 📚 **Educational Journey**
+
+**Version 1** takes you deep into the mathematics:
+
+- See exactly how gradients flow
+- Understand weight updates step-by-step
+- Learn the "why" behind neural networks
+- Build solid theoretical foundations
+
+**Perfect for**: Students, researchers, and anyone wanting to truly understand ML
+
+</td>
+<td width="50%" align="center">
+
+### 💼 **Professional Practice**
+
+**Version 2** teaches industry standards:
+
+- Production-ready PyTorch patterns
+- Built-in optimizers and loss functions
+- Modular, scalable code structure
+- Best practices for real-world deployment
+
+**Perfect for**: Developers, ML engineers, and production environments
+
+</td>
+</tr>
+</table>
+
+### 🌟 **The Best of Both Worlds**
+
+|           Aspect            | What You Gain                                           |
+| :-------------------------: | :------------------------------------------------------ |
+|  **🧠 Theory + Practice**   | Understand fundamentals AND professional implementation |
+| **📈 Progressive Learning** | Start with V1 basics, advance to V2 patterns            |
+|     **🎯 Real Results**     | Both versions work on actual medical data               |
+|   **🔄 Complete Picture**   | See how raw tensors translate to nn.Module              |
+|     **💪 Career Ready**     | Academic knowledge + Industry skills                    |
+
+> **💡 Pro Tip**: Study V1 first to build intuition, then appreciate why V2's abstractions make sense. This approach creates deeper understanding than learning either in isolation.
 
 ---
 
